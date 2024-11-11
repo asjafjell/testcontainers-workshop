@@ -61,3 +61,18 @@ Set Java 21 as current local Java version
 ```shell
 jenv local 21
 ```
+
+Sometimes Intellij IDEA messes up which Java version it uses. Make it use Java 21 for the project. 
+
+
+Go to project structure (`cmd + ;`) and set:
+- Project SDK to _Temurin 21_ previously installed
+![img_1.png](img_1.png)
+   
+- Module target platform to it to _JVM 21_:
+![img.png](img.png)
+
+All is fine and dandy if the following works and you get no errors when building from console
+```shell
+mvn clean install
+```
