@@ -76,3 +76,47 @@ All is fine and dandy if the following works and you get no errors when building
 ```shell
 mvn clean install
 ```
+
+## Task 1 - setting up testcontainers
+
+We have test to verify that we can get data from the database. You can find it in [DatabaseTest.kt](src/test/kotlin/no/sjafjell/devex/testcontainersworkshop/DatabaseTest.kt). 
+
+**Your job is to make sure that the test goes green ✅**
+
+### Step 1 - Add proper dependencies
+
+Testcontainers is essentially a bunch of dependencies that we sprinkle onto Spring. Add these to the pom of the project:
+
+```xml
+<dependencies>
+    ...
+    <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>testcontainers</artifactId>
+        <version>1.20.1</version>
+        <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.testcontainers</groupId>
+        <artifactId>mssqlserver</artifactId>
+        <version>1.20.1</version>
+        <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+        <groupId>com.microsoft.sqlserver</groupId>
+        <artifactId>mssql-jdbc</artifactId>
+        <version>12.2.0.jre11</version>
+    </dependency>
+</dependencies>
+
+```
+
+What this gives us is:
+- The dependency of Testcontainers itself
+- The dependency that enables us connect to a Microsoft SQL server with Testcontainer code
+- The database driver that enables us to query the database with Microsoft SQL syntax
+
+
+
