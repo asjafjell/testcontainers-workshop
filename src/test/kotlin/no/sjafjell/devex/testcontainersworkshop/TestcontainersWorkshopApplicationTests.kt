@@ -7,28 +7,23 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class TestcontainersWorkshopApplicationTests {
 
+    data class Person(val name: String, val avdeling: String)
+
+    fun mapToPerson(rs: ResultSet, currentIndex: Int): Person = Person(
+        name = rs.getString("name"),
+        avdeling = rs.getString("department")
+    )
+
     @Test
-    fun contextLoads() {
-        println("Loading test")
-
+    fun `can insert and get person`() {
         TestDataSource
-            .databaseConnection()
-            .use { connection ->
-                connection
-                    .createStatement()
-                    .use { statement ->
-                        statement.execute("CREATE TABLE test_table (id INT PRIMARY KEY, name NVARCHAR(100))")
-                        statement.execute("INSERT INTO test_table (id, name) VALUES (1, 'Testdata')")
+            .jdbcTemplate()
+            .queryForObject(
+                "SELECT name, department FROM person WHERE id = 1",
+                { resultSet: ResultSet, currentIndex: Int -> this.mapToPerson(resultSet, currentIndex) }
+            )
 
-                        val resultSet: ResultSet = statement.executeQuery("SELECT name FROM test_table WHERE id = 1")
-                        if (resultSet.next()) {
-                            val name = resultSet.getString("name")
-                        }
-                    }
-            }
-
-
-        println("Datasource ${TestDataSource.databaseConnection()} created")
+        println("Datasource ${TestDataSource.jdbcTemplate()} created")
     }
 
 }
