@@ -118,5 +118,11 @@ What this gives us is:
 - The dependency that enables us connect to a Microsoft SQL server with Testcontainer code
 - The database driver that enables us to query the database with Microsoft SQL syntax
 
+### Step 2 - Start the Testcontainers image
 
+In the [TestDataSource.kt](src/test/kotlin/no/sjafjell/devex/testcontainersworkshop/TestDataSource.kt), we need start a container with our database. 
+
+**Add proper code for starting a `MSSQLServerContainer`** with a proper MS SQL image from Docker hub, like _mcr.microsoft.com/mssql/server:2022-latest_.
+
+**Remember to accept the licence** - see more information at the [Testcontainers module page](https://java.testcontainers.org/modules/databases/mssqlserver/)
 
