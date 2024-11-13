@@ -1,5 +1,6 @@
 package no.sjafjell.devex.testcontainersworkshop
 
+///*
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.testcontainers.containers.MSSQLServerContainer
@@ -7,21 +8,36 @@ import org.testcontainers.containers.MSSQLServerContainer
 object TestDataSource {
 
     fun jdbcTemplate(): JdbcTemplate {
-        // create container of type MSSQLServerContainer here. Specify the docker image for mssql server
-        // Todo: set container to null here and remove start
-        val container = MSSQLServerContainer("mcr.microsoft.com/mssql/server:2022-latest").acceptLicense()
+        val container: MSSQLServerContainer<*> = createTestcontainerForDatabase()
+
+        val dataSource = createDataSource(container)
+        val jdbcTemplate = JdbcTemplate(dataSource)
+
+        migrate(jdbcTemplate)
+
+        return jdbcTemplate
+    }
+
+    fun createTestcontainerForDatabase(): MSSQLServerContainer<*> {
+        //TODO("create container of type MSSQLServerContainer here. Specify the docker image for mssql server")
+
+        //DELETE THESE LINES
+        val container: MSSQLServerContainer<*> = MSSQLServerContainer("mcr.microsoft.com/mssql/server:2022-latest").acceptLicense()
         container.start()
 
+        return container
+    }
+
+    fun createDataSource(container : MSSQLServerContainer<*>): DriverManagerDataSource {
+        //TODO("create a DriverManagerDataSource with connection details from the container")
+        //DELETE THESE LINES
         val dataSource = DriverManagerDataSource(
             container.jdbcUrl,
             container.username,
             container.password
         )
 
-        val jdbcTemplate = JdbcTemplate(dataSource)
-        migrate(jdbcTemplate)
-
-        return jdbcTemplate
+        return dataSource
     }
 
     private fun migrate(jdbcTemplate: JdbcTemplate) {
@@ -31,3 +47,4 @@ object TestDataSource {
         println("Database migrated with a new table!")
     }
 }
+//*/

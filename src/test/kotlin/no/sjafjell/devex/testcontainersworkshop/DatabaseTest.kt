@@ -1,6 +1,7 @@
 package no.sjafjell.devex.testcontainersworkshop
 
 import java.sql.ResultSet
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -9,13 +10,8 @@ class DatabaseTest {
 
     data class Person(val name: String, val avdeling: String)
 
-    fun mapToPerson(rs: ResultSet, currentIndex: Int): Person = Person(
-        name = rs.getString("name"),
-        avdeling = rs.getString("department")
-    )
-
     @Test
-    fun `can insert and get person`() {
+    fun `insert and get person`() {
         TestDataSource
             .jdbcTemplate()
             .queryForObject(
@@ -25,5 +21,10 @@ class DatabaseTest {
 
         println("Datasource ${TestDataSource.jdbcTemplate()} created")
     }
+
+    fun mapToPerson(rs: ResultSet, currentIndex: Int): Person = Person(
+        name = rs.getString("name"),
+        avdeling = rs.getString("department")
+    )
 
 }
