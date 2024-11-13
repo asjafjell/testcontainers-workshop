@@ -19,9 +19,6 @@ object TestDataSource {
     }
 
     fun createTestcontainerForDatabase(): MSSQLServerContainer<*> {
-        //TODO("create container of type MSSQLServerContainer here. Specify the docker image for mssql server")
-
-        //DELETE THESE LINES
         val container: MSSQLServerContainer<*> = MSSQLServerContainer("mcr.microsoft.com/mssql/server:2022-latest").acceptLicense()
         container.start()
 
@@ -29,8 +26,6 @@ object TestDataSource {
     }
 
     fun createDataSource(container : MSSQLServerContainer<*>): DriverManagerDataSource {
-        //TODO("create a DriverManagerDataSource with connection details from the container")
-        //DELETE THESE LINES
         val dataSource = DriverManagerDataSource(
             container.jdbcUrl,
             container.username,
