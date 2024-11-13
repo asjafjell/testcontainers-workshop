@@ -1,10 +1,8 @@
 package no.sjafjell.devex.testcontainersworkshop
 
-import java.sql.Connection
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.datasource.DriverManagerDataSource
 import org.testcontainers.containers.MSSQLServerContainer
-
 
 object TestDataSource {
 
@@ -26,7 +24,7 @@ object TestDataSource {
         return jdbcTemplate
     }
 
-    fun migrate(jdbcTemplate: JdbcTemplate) {
+    private fun migrate(jdbcTemplate: JdbcTemplate) {
         println("Migrating database ...")
         jdbcTemplate.execute("CREATE TABLE person (id INT PRIMARY KEY, name NVARCHAR(100), department NVARCHAR(100)) ")
         jdbcTemplate.execute("INSERT INTO person (id, name, department) VALUES (1, 'Aleksander', 'Teknologi')")
