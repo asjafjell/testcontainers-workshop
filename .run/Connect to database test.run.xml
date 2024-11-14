@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Connect to database test" type="JUnit" factoryName="JUnit">
+    <module name="testcontainers-workshop" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="no.sjafjell.devex.testcontainersworkshop.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <option name="PACKAGE_NAME" value="no.sjafjell.devex.testcontainersworkshop" />
+    <option name="MAIN_CLASS_NAME" value="no.sjafjell.devex.testcontainersworkshop.DatabaseTest" />
+    <option name="METHOD_NAME" value="insert and get person" />
+    <option name="TEST_OBJECT" value="method" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
