@@ -10,6 +10,8 @@ Give you a rolling start on the concept of a Testcontainer. It just scratches th
 
 **The goal of this workshop is to make sure that [this test](src/test/kotlin/no/sjafjell/devex/testcontainersworkshop/DatabaseTest.kt) goes green ✅**
 
+_Need help on the way? Check out the helper branch - it shows the solution to the tasks._
+
 The steps of this workshop is as following:
 
 1. Development environment setup
